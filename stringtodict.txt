@@ -1,0 +1,20 @@
+s = "Software version : v2.3.0,Mainline Version : v2.3,Release Date : 12.11.2021,Build info : ,Build Number: 121123"
+
+
+result = {}
+import re
+l = re.split(",",s)
+result = dict(re.split(":",substring) for substring in re.split(",",s))
+result
+for i in result:
+    if result[i] == '' or result[i] == ' '  :
+        empty_key = list(result.keys()).index(i) + 1
+        result[i] = list(result.items())[empty_key]
+result.pop(list(result.keys())[empty_key])
+for key,value in list(result.items()):
+    #print(type(i))
+    if type(value) == tuple:
+        new = {}
+        new[value[0]] = value[1]
+        result[key] = new
+print(result) 
